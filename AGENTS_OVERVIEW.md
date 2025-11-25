@@ -1,142 +1,123 @@
-# Complete Agent System Overview
+# Agent System Overview
 
-## 15 Specialized AI Agents for QA Migration
+## 8 Independent Agents for Karate to Robot Framework Migration
 
-### Core Migration (3 agents)
-**1. Orchestrator Agent**
-- Coordinates entire workflow
-- Manages agent execution sequence
-- Aggregates results
+### Agent 1: Dependency Mapper
+- Maps Java/Maven dependencies to Python equivalents
+- Generates requirements.txt
+- Documents compatibility notes
+- **Independent**: Yes
+- **Suggested order**: 1st
 
-**2. Migration Agent**
+### Agent 2: Environment Configuration
+- Converts karate-config.js to Robot Framework variables
+- Creates config files for each environment
+- Handles credentials securely
+- **Independent**: Yes
+- **Suggested order**: 2nd
+
+### Agent 3: API Endpoint Mapper
+- Catalogs all API endpoints from feature files
+- Documents HTTP methods and parameters
+- Creates endpoint inventory
+- **Independent**: Yes
+- **Suggested order**: 3rd
+
+### Agent 4: Keyword Library Designer
+- Designs reusable keyword libraries
+- Creates 3-level keyword hierarchy
+- Generates Python helper libraries
+- **Independent**: Yes
+- **Suggested order**: 4th
+
+### Agent 5: Test Strategy
+- Defines test organization strategy
+- Creates tagging system
+- Plans CI/CD integration
+- **Independent**: Yes
+- **Suggested order**: 5th
+
+### Agent 6: Migration
 - Converts Karate feature files to Robot Framework
 - Maps syntax and keywords
-- Creates project structure
+- Generates test files
+- **Independent**: Yes (works better with keywords)
+- **Suggested order**: 6th
 
-**3. Assertion Converter Agent**
+### Agent 7: Assertion Converter
 - Converts Karate match expressions
 - Handles fuzzy matchers
-- Maps JSON path assertions
+- Updates test files with assertions
+- **Independent**: Yes (requires test files)
+- **Suggested order**: 7th
 
-### Quality Assurance (3 agents)
-**4. Code Review Agent**
-- Reviews test code quality
-- Checks best practices
-- Scores code quality (0-100)
-
-**5. Test Analysis Agent**
-- Analyzes test patterns
-- Detects duplicates
-- Calculates complexity metrics
-
-**6. Security Reviewer Agent**
-- Identifies hardcoded credentials
-- Detects sensitive data exposure
-- Recommends secrets management
-
-### Design & Architecture (3 agents)
-**7. Keyword Library Designer Agent**
-- Designs reusable keyword libraries
-- Creates keyword hierarchies
-- Suggests organization structure
-
-**8. Test Strategy Agent**
-- Optimizes test organization
-- Designs tagging strategy
-- Plans CI/CD integration
-
-**9. API Endpoint Mapper Agent**
-- Catalogs all API endpoints
-- Maps HTTP methods
-- Documents request/response patterns
-
-### Configuration (2 agents)
-**10. Environment Configuration Agent**
-- Manages environment configs
-- Creates variable files
-- Designs configuration hierarchy
-
-**11. Dependency Mapper Agent**
-- Maps Java to Python dependencies
-- Identifies required libraries
-- Generates requirements list
-
-### Analysis & Optimization (3 agents)
-**12. Performance Analyzer Agent**
-- Analyzes execution performance
-- Identifies bottlenecks
-- Suggests optimization strategies
-
-**13. Data Validation Agent**
-- Validates test data integrity
-- Checks data references
-- Ensures format compatibility
-
-**14. Reporting Designer Agent**
-- Designs reporting strategy
-- Recommends metrics to track
-- Creates dashboard layouts
-
-### Documentation (1 agent)
-**15. Documentation Agent**
+### Agent 8: Documentation
 - Generates migration summary
 - Creates setup guides
 - Produces keyword reference
+- **Independent**: Yes
+- **Suggested order**: 8th
 
-## Usage Patterns
+## Execution Patterns
 
-### Full Migration
-Use all 15 agents in sequence for complete migration.
+### Full Migration (All 8 Agents)
+Execute all agents in suggested order for complete migration:
+```bash
+python run_migration.py --source <path> --output <path>
+```
 
-### Quick Migration
-Use core agents: Orchestrator, Migration, Assertion Converter, Code Review.
+### Quick Migration (Essential Only)
+Execute only essential agents:
+```bash
+python run_migration.py --agents "1,2,6,8"
+```
+Agents: Dependency Mapper, Environment Config, Migration, Documentation
 
-### Quality Focus
-Use QA agents: Code Review, Test Analysis, Security Reviewer.
+### Custom Workflow
+Execute specific agents in custom order:
+```bash
+python run_migration.py --agents "migration,assertion-converter,documentation"
+```
 
-### Optimization Focus
-Use: Performance Analyzer, Test Strategy, Keyword Library Designer.
-
-### Documentation Focus
-Use: Documentation, Reporting Designer, API Endpoint Mapper.
+### Individual Agent
+Execute one agent independently:
+```bash
+python run_agent.py --agent migration --input <path> --output <path>
+```
 
 ## Agent Combinations
 
-### For New Projects
-1. Orchestrator
-2. Migration
-3. Keyword Library Designer
-4. Environment Configuration
-5. Documentation
+### Minimal Migration
+- Agent 1: Dependency Mapper
+- Agent 6: Migration
+- Agent 8: Documentation
 
-### For Quality Improvement
-1. Code Review
-2. Test Analysis
-3. Security Reviewer
-4. Performance Analyzer
+### Standard Migration
+- Agent 1: Dependency Mapper
+- Agent 2: Environment Configuration
+- Agent 6: Migration
+- Agent 7: Assertion Converter
+- Agent 8: Documentation
 
-### For Maintenance
-1. Test Strategy
-2. Data Validation
-3. Dependency Mapper
-4. Reporting Designer
+### Complete Migration
+- All 8 agents in suggested order
 
-## All Agents at a Glance
+### Architecture Focus
+- Agent 3: API Endpoint Mapper
+- Agent 4: Keyword Library Designer
+- Agent 5: Test Strategy
 
-| Agent | Primary Focus | Output |
-|-------|--------------|--------|
-| Orchestrator | Workflow coordination | Execution plan |
-| Migration | Code conversion | Robot Framework files |
-| Assertion Converter | Assertion accuracy | Converted assertions |
-| Code Review | Quality checks | Quality score + issues |
-| Test Analysis | Pattern analysis | Metrics + recommendations |
-| Security Reviewer | Security issues | Security report |
-| Keyword Library Designer | Reusable keywords | Library structure |
-| Test Strategy | Organization | Strategy document |
-| API Endpoint Mapper | Endpoint catalog | Endpoint inventory |
-| Environment Config | Config management | Variable files |
-| Dependency Mapper | Dependencies | Requirements list |
-| Performance Analyzer | Performance | Optimization plan |
-| Data Validation | Data integrity | Validation report |
-| Reporting Designer | Reporting strategy | Report templates |
-| Documentation | Documentation | Complete docs |
+## Quick Reference
+
+| # | Agent | Input | Output | Independent |
+|---|-------|-------|--------|-------------|
+| 1 | Dependency Mapper | pom.xml | requirements.txt | Yes |
+| 2 | Environment Config | karate-config.js | config/*.robot | Yes |
+| 3 | API Endpoint Mapper | .feature files | API_ENDPOINTS.md | Yes |
+| 4 | Keyword Designer | .feature files | resources/*.robot | Yes |
+| 5 | Test Strategy | Project structure | TEST_STRATEGY.md | Yes |
+| 6 | Migration | .feature files | tests/*.robot | Yes |
+| 7 | Assertion Converter | tests/*.robot | Updated tests | Yes* |
+| 8 | Documentation | All outputs | docs/*.md | Yes |
+
+*Requires test files to exist

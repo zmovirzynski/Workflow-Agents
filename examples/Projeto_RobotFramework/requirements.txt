@@ -1,0 +1,26 @@
+# Robot Framework Core
+robotframework==6.1.1
+
+# HTTP/REST API Testing
+robotframework-requests==0.9.5
+requests==2.31.0
+
+# JSON Handling
+robotframework-jsonlibrary==0.5
+jsonschema==4.20.0
+
+# Data-Driven Testing
+robotframework-datadriver==1.8.1
+
+# Reporting
+robotframework-pabot==2.16.0
+
+# Utilities
+robotframework-faker==5.0.0
+python-dotenv==1.0.0
+
+# Database (if needed)
+robotframework-databaselibrary==1.2.4
+
+# Additional Libraries
+pyyaml==6.0.1

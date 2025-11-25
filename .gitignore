@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Robot Framework
+results/
+log.html
+report.html
+output.xml
+*.log
+
+# Migration state (user-specific)
+migration-state.json
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
